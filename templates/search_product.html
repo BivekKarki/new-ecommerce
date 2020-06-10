@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!--content-->
+		<div class="product">
+		<div class="container">
+			<div class="spec ">
+				<h3>Search Products</h3>
+				<div class="ser-t">
+					<b></b>
+					<span><i></i></span>
+					<b class="line"></b>
+				</div>
+			</div>
+				<div class=" con-w3l agileinf">
+					{% for search in search_query %}
+							<div class="col-md-3 pro-1">
+								<div class="col-m">
+								<a href="#" data-toggle="modal" data-target="#{{search.slug}}" class="offer-img">
+										<img src="{{search.image}}" class="img-responsive" alt="">
+								</a>
+									<div class="modal fade" id="{{search.slug}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content modal-info">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body modal-spa">
+								<div class="col-md-5 span-2">
+											<div class="item">
+												<img src="{{search.image}}" class="img-responsive" alt="">
+											</div>
+								</div>
+								<div class="col-md-7 span-1 ">
+									<h3>{{search.title}}</h3>
+									<p class="in-para"> {{search.stock}}</p>
+									<div class="price_single">
+										{% if search.discounted_price %}
+									  <span class="reducedfrom "><del>${{search.price}}</del>${{search.discounted_price}}</span>
+												{% else %}
+										<span class="reducedfrom ">${{search.price}}</span>
+										{% endif %}
+									 <div class="clearfix"></div>
+									</div>
+									<h4 class="quick">Quick Overview:</h4>
+									<p class="quick_desc"> {{search.description}} </p>
+									 <div class="add-to">
+										   <button class="btn btn-danger my-cart-btn my-cart-btn1 " data-id="2" data-name="Sunflower Oil" data-summary="summary 2" data-price="9.00" data-quantity="1" data-image="images/of1.png">Add to Cart</button>
+										</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!--									Product information-->
+									<div class="mid-1">
+										<div class="women">
+											<h6><a href="{{search.get_item_url}}">{{ search.title }}</a></h6>
+										</div>
+										<div class="mid-2">
+											{% if search.discounted_price %}
+											<p ><label>${{search.price}}</label><em class="item_price">${{search.discounted_price}}</em></p>
+											{% else %}
+											<p ><em class="item_price">${{search.price}}</em></p>
+											{% endif %}
+											  <div class="block">
+												<div class="starbox small ghosting"> </div>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+											<div class="add">
+										   <button class="btn btn-danger my-cart-btn my-cart-b" data-id="24" data-name="Wheat" data-summary="summary 24" data-price="6.00" data-quantity="1" data-image="images/of24.png">Add to Cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+
+							<div class="clearfix"></div>
+						 </div>
+		</div>
+	</div>
+{% endblock %}
